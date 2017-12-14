@@ -5,6 +5,7 @@ var app = express();
 // ============== MONGOOSE ===========//
 var mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost/quotes'); // name of DataBase!!!!
+        //show collections
 mongoose.Promise = global.Promise;
 
 
@@ -39,12 +40,12 @@ var QuoteSchema = new mongoose.Schema({
     quote: String,
     created_at: Date,
    },{
-       timestamp: true
+       timestamps: true
    });
 
 mongoose.model("myQuote",QuoteSchema) // Setting this Schema in our Models as myQuote
 var Quote = mongoose.model("myQuote") // We are retrieving this Schema from our Models, myQuote
-   
+   // "myQuote" is the collection within the database "quotes" BUT it looks like this "myquotes"
 
 
 
@@ -59,12 +60,13 @@ app.get('/', function(request, response){
 });
 
 app.post('/quotes', function(request, response){
-    console.log("POST DATA", request.body);
-    var newQuote = new Quote({name: request.body.name, quote: request.body.quote, created_at: request.body.createdAt})
+    console.log("POST DATA = ", request.body);
+    var newQuote = new Quote({name: request.body.name, quote: request.body.quote, createdAt: request.body.createdAt});
 
     newQuote.save(function(err, result){
         if(err){
             console.log("something went wrong", err);
+            response.send("something went wrong!")
 
         } else {
             console.log('success!', result);

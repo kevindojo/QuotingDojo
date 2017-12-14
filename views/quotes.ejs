@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>Quotes</title>
 </head>
 <body>
     <h1>Here are the awesome quotes!</h1>
@@ -12,7 +12,7 @@
     <% for (var q in quotes_results) { %>
         <div style="border-bottom: solid 1px;; padding: 5px; margin: 5px; width: 400px;">
             <h4>Quote: <%= quotes_results[q].quote %></h4>
-            <p>      - <%= quotes_results[q].name %></p>
+            <p>      - <%= quotes_results[q].name %> at <%= quotes_results[q].createdAt %> </p>
         </div>        
     <% } %>
 
